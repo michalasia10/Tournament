@@ -5,6 +5,8 @@ from tournament import views
 
 router = DefaultRouter()
 router.register('register', views.RegisterAPIView, basename='RegisterAPIView')
+router.register('logout',views.LogoutView,basename='Logout')
+router.register('login',views.LoginView,basename='Login')
 
 urlpatterns = [
     path('v1/', include([

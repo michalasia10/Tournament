@@ -1,1 +1,1 @@
-from .auth import RegisterAPIView
+from .auth import RegisterAPIView,LoginView,LogoutView
