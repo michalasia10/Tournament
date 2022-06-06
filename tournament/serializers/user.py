@@ -1,12 +1,14 @@
-from rest_framework import serializers
-from tournament.models import UserProfile
 from django.contrib.auth.models import User
+from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
+
+from tournament.models import UserProfile
+
 
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta():
         model = UserProfile
-        fields = ('id','user', 'birth', 'team')
+        fields = ('id', 'user', 'birth', 'team')
 
 
 class UserProfileUpdate(serializers.ModelSerializer):
@@ -14,9 +16,9 @@ class UserProfileUpdate(serializers.ModelSerializer):
 
     class Meta():
         model = UserProfile
-        fields = ('username','team')
+        fields = ('username', 'team')
 
-    def _get_user(self,username):
+    def _get_user(self, username):
         return User.objects.get(username=username)
 
     def validate(self, data):
@@ -25,7 +27,7 @@ class UserProfileUpdate(serializers.ModelSerializer):
             self._get_user(username)
 
         except UserProfile.DoesNotExist:
-            raise  ValidationError("User Profile dosen't exist")
+            raise ValidationError("User Profile dosen't exist")
 
         return data
 
@@ -35,7 +37,7 @@ class UserProfileUpdate(serializers.ModelSerializer):
         if user.is_superuser:
             raise ValidationError("Can't append superuser to team")
 
-        user_profile =  UserProfile.objects.get(user_id=user.id)
+        user_profile = UserProfile.objects.get(user_id=user.id)
         user_profile.team = self.validated_data['team']
         user_profile.save()
 
