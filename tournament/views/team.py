@@ -20,7 +20,7 @@ class TeamViewSet(ModelViewSet):
     @action(detail=True,methods=['GET'],serializer_class=UserProfileUpdate)
     def add_me_to_team(self,request,pk=None):
         team = self.get_object()
-        serializer = UserProfileUpdate(data={'user_id':request.user.id +1 ,'team':team.id})
+        serializer = UserProfileUpdate(data={'username':request.user.username ,'team':team.id})
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(status=status.HTTP_201_CREATED)
@@ -30,7 +30,7 @@ class TeamViewSet(ModelViewSet):
     @action(detail=True,methods=['POST'],serializer_class=UserProfileUpdate)
     def add_user_to_team(self,request,pk=None):
         team = self.get_object()
-        serializer = self.serializer_class(data={'user_id': request.data['user_id'], 'team': team.id})
+        serializer = self.serializer_class(data={'username': request.data['username'], 'team': team.id})
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(status=status.HTTP_201_CREATED)
