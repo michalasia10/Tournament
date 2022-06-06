@@ -18,3 +18,10 @@ class TournamentRetrieveSerializer(serializers.ModelSerializer):
     class Meta():
         model = Tournament
         fields = ('name', 'game_type', 'start_time', 'end_time', 'stages')
+
+
+class TournamentSpecificStageSerializer(serializers.Serializer):
+    stage_part = serializers.IntegerField()
+
+    class Meta():
+        fields = ('stage_part')
