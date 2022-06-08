@@ -145,3 +145,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REGEX_TO_VALID_COLOR = r'^#(?:[0-9a-fA-F]{3}){1,2}$'

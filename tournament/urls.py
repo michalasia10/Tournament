@@ -5,8 +5,11 @@ from tournament import views
 
 router = DefaultRouter()
 router.register('register', views.RegisterAPIView, basename='RegisterAPIView')
-router.register('logout',views.LogoutView,basename='Logout')
-router.register('login',views.LoginView,basename='Login')
+router.register('logout', views.LogoutView, basename='Logout')
+router.register('login', views.LoginView, basename='Login')
+router.register('teams', views.TeamViewSet, basename='Teams')
+router.register('profiles', views.UserProfileViewSet, basename='Profiles')
+router.register('tournaments', views.TournamentViewSet, basename='Tournament')
 
 urlpatterns = [
     path('v1/', include([
