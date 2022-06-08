@@ -10,6 +10,7 @@ router.register('login', views.LoginView, basename='Login')
 router.register('teams', views.TeamViewSet, basename='Teams')
 router.register('profiles', views.UserProfileViewSet, basename='Profiles')
 router.register('tournaments', views.TournamentViewSet, basename='Tournament')
+router.register('matches',views.MatchModelViewSet,basename='Match')
 
 urlpatterns = [
     path('v1/', include([

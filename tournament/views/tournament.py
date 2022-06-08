@@ -67,15 +67,15 @@ class TournamentViewSet(ModelViewSet):
         serializer = TournamentRetrieveSerializer(instance)
         return Response(serializer.data)
 
-
-
-    @action(methods=['POST'], detail=True)
+    @action(methods=['GET'], detail=True)
     def get_specific_stage(self, request, pk=None, *args, **kwargs):
-        serializer = TournamentSpecificStageSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
+        stage_part = request.query_params.get('stage_part')
+
+        if stage_part is None:
+            raise ValidationError("Bad query params, try with ?stage_part")
 
         tournament_ = Tournament.objects.filter(pk=pk,
-                                                stages__stage_part=serializer.validated_data['stage_part']).first()
+                                                stages__stage_part=int(stage_part)).first()
 
         if tournament_ is None:
             raise ValidationError("No stage for current Tournament")
