@@ -29,3 +29,10 @@ class TournamentSpecificStageSerializer(serializers.Serializer):
 
     class Meta():
         fields = ('stage_part')
+
+
+class TournamentCreateQualifications(serializers.Serializer):
+    teams_id = serializers.ListSerializer(child=serializers.IntegerField())
+
+    class Meta():
+        fields = ('teams_id')

@@ -6,9 +6,13 @@ from tournament.models import UserProfile
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
+    profile_id = serializers.IntegerField(source='id')
+    user_id = serializers.IntegerField(source='user.id')
+    username = serializers.CharField(source='user.username')
+
     class Meta():
         model = UserProfile
-        fields = ('id', 'user', 'birth', 'team')
+        fields = ('profile_id', 'user_id', 'username', 'birth', 'team')
 
 
 class UserProfileUpdate(serializers.ModelSerializer):
