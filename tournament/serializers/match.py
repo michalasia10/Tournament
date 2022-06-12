@@ -13,7 +13,7 @@ class MatchSerializer(serializers.ModelSerializer):
 
     class Meta():
         model = Match
-        fields = ('id','team_a_id', 'team_a_name', 'team_b_id','team_b_name', 'score')
+        fields = ('id', 'team_a_id', 'team_a_name', 'team_b_id', 'team_b_name', 'score')
 
 
 class MatchCreateSerializer(serializers.ModelSerializer):

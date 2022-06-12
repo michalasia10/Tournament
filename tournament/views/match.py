@@ -1,10 +1,10 @@
 from rest_framework import status
+from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
 from tournament.models import Match
 from tournament.serializers import MatchSerializer, MatchUpdateSerializer, MatchCreateSerializer
-from rest_framework.decorators import action
 
 
 class MatchModelViewSet(ModelViewSet):
@@ -12,7 +12,7 @@ class MatchModelViewSet(ModelViewSet):
     serializer_classes = {
         'create': MatchCreateSerializer,
         'update': MatchUpdateSerializer,
-        'change_score_for_match':MatchUpdateSerializer,
+        'change_score_for_match': MatchUpdateSerializer,
     }
     default_serializer_class = MatchSerializer
 
@@ -33,4 +33,4 @@ class MatchModelViewSet(ModelViewSet):
         match.score = serializer.validated_data['score']
         match.save()
 
-        return Response(self.default_serializer_class(match),status=status.HTTP_200_OK)
+        return Response(self.default_serializer_class(match), status=status.HTTP_200_OK)

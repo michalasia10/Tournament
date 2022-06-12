@@ -1,6 +1,6 @@
+from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
-from django.contrib.auth.models import User
 
 
 class GameEnum(models.TextChoices):
@@ -23,4 +23,4 @@ class Tournament(models.Model):
     max_teams = models.IntegerField(default=3, )
     max_players = models.IntegerField(default=2, validators=[MinValueValidator(2), MaxValueValidator(100)])
     status = models.CharField(max_length=250, choices=StatusEnum.choices, default='')
-    owner = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='torunaments',default=1)
+    owner = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='torunaments', default=1)

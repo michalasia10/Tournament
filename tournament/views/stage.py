@@ -17,7 +17,7 @@ class StagesModelViewSet(ModelViewSet):
         return team
 
     @action(detail=False, methods=["GET"])
-    def check_winners(self,request,*args,**kwargs):
+    def check_winners(self, request, *args, **kwargs):
         stages = self.get_queryset()
 
         stage: Stage
@@ -31,6 +31,6 @@ class StagesModelViewSet(ModelViewSet):
                     stage.save()
 
         data = self.get_queryset()
-        serializer = StageSerializer(data,many=True)
+        serializer = StageSerializer(data, many=True)
 
         return Response(serializer.data, status=status.HTTP_200_OK)

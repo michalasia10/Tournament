@@ -7,9 +7,9 @@ from django.db.utils import IntegrityError
 from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.exceptions import ValidationError
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from tournament.models import Tournament, StatusEnum, Stage, Match, Team
 from tournament.serializers import TournamentSerializer, TournamentRetrieveSerializer, \

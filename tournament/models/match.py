@@ -1,8 +1,8 @@
 from django.db import models
 
 from tournament.models import Team, Stage, StatusEnum
-from tournament.validators.schemas import MATCH_JSON_SCHEMA
 from tournament.validators.match import JSONMatchSchemaValidator
+from tournament.validators.schemas import MATCH_JSON_SCHEMA
 
 
 class Match(models.Model):
@@ -11,4 +11,4 @@ class Match(models.Model):
     score = models.JSONField(default=dict, null=True, blank=True,
                              validators=[JSONMatchSchemaValidator(limit_value=MATCH_JSON_SCHEMA)])
     stage = models.ForeignKey(Stage, on_delete=models.CASCADE, related_name='matches', verbose_name='matches')
-    status = models.CharField(max_length=250,choices=StatusEnum.choices,default=StatusEnum.START.value)
+    status = models.CharField(max_length=250, choices=StatusEnum.choices, default=StatusEnum.START.value)
