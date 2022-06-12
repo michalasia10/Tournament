@@ -3,17 +3,11 @@ MATCH_JSON_SCHEMA = {
     'type': 'object',
     'properties': {
         'team_a': {
-            'type': 'object',
-            "properties": {
-                "score": {"type": "integer"}
-            }
+            'type': 'integer',
         },
         "team_b": {
-            "type": "object",
-            "properties": {
-                "score": {"type": "integer"}
-            }
+            "type": "integer",
         },
     },
-    'required': ['team_a',"team_b"]
+    'required': ['team_a', "team_b"]
 }

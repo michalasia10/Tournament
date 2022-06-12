@@ -12,6 +12,7 @@ class MatchModelViewSet(ModelViewSet):
     serializer_classes = {
         'create': MatchCreateSerializer,
         'update': MatchUpdateSerializer,
+        'change_score_for_match':MatchUpdateSerializer,
     }
     default_serializer_class = MatchSerializer
 
@@ -23,7 +24,7 @@ class MatchModelViewSet(ModelViewSet):
         serializer.is_valid(raise_exception=True)
         return Response(serializer.validated_data, status=status.HTTP_201_CREATED)
 
-    @action(detail=True, methods=['POST'])
+    @action(detail=True, methods=['PUT'])
     def change_score_for_match(self, request, *args, **kwargs):
         serializer = self.get_serializer_class()(data=request.data)
         serializer.is_valid(raise_exception=True)
