@@ -5,12 +5,20 @@ from tournament.serializers import StageSerializer
 
 
 class TournamentSerializer(serializers.ModelSerializer):
+    stages = StageSerializer(many=True, read_only=True)
+    owner = serializers.CharField(source='owner.username')
+
     class Meta():
         model = Tournament
-        fields = ('id', 'name', 'game_type', 'start_time', 'end_time', 'max_teams', 'max_players')
+        fields = (
+            'id', 'owner', 'name', 'game_type', 'start_time', 'end_time', 'max_teams', 'max_players', 'status',
+            'stages')
 
 
-class TournamentCreateSerializer(TournamentSerializer):
+class TournamentCreateSerializer(serializers.ModelSerializer):
+    class Meta():
+        model = Tournament
+        fields = ('id', 'owner', 'name', 'game_type', 'start_time', 'end_time', 'max_teams', 'max_players', 'status')
 
     def create(self, validated_data):
         return Tournament.objects.create(**validated_data)

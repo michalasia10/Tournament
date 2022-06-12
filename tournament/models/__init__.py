@@ -1,4 +1,4 @@
-from .tournament import Tournament
+from .tournament import Tournament, StatusEnum
 from .team import Team
 from .stage import Stage
 from .match import Match
