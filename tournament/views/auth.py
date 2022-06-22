@@ -18,7 +18,7 @@ class RegisterAPIView(ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
-        serializer.is_valid()
+        serializer.is_valid(raise_exception=True)
         user_profile = serializer.save()
         token = Token.objects.create(user=user_profile.user)
         data = dict(serializer.data)
